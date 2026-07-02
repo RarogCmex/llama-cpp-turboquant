@@ -63,7 +63,7 @@ jobs:
           provenance: false
           build-args: |
             CUDA_VERSION=${{ inputs.cuda_version }}
-            CUDA_DOCKER_ARCH=6.0;6.1
+            CUDA_DOCKER_ARCH=60;61
             BUILD_DATE=${{ steps.build_date.outputs.date }}
           tags: |
             ${{ steps.image.outputs.tag }}
