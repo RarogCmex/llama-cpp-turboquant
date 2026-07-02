@@ -48,6 +48,12 @@ jobs:
           docker-images: true
           swap-storage: true
 
+      - name: Set image tag
+        id: image
+        run: echo "tag=ghcr.io/${GITHUB_REPOSITORY_OWNER@L}/llama-cpp-turboquant:cuda${{ inputs.cuda_version }}-pascal" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -62,7 +68,7 @@ jobs:
             CUDA_DOCKER_ARCH=6.0;6.1
             BUILD_DATE=${{ steps.build_date.outputs.date }}
           tags: |
-            ghcr.io/${{ github.repository_owner }}/llama-cpp-turboquant:cuda${{ inputs.cuda_version }}-pascal
+            ${{ steps.image.outputs.tag }}
 
       - name: Make package public
         env:
