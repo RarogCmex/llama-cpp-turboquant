@@ -63,3 +63,11 @@ jobs:
             BUILD_DATE=${{ steps.build_date.outputs.date }}
           tags: |
             ghcr.io/${{ github.repository_owner }}/llama-cpp-turboquant:cuda${{ inputs.cuda_version }}-pascal
+
+      - name: Make package public
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api -X PATCH \
+            /user/packages/container/${{ github.event.repository.name }} \
+            -f visibility=public
