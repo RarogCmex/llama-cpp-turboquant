@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+      - feature/turboquant-kv-cache
   workflow_dispatch:
     inputs:
       cuda_version:
