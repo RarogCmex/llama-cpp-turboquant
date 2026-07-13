@@ -1,6 +1,10 @@
-name: Build CUDA Pascal Docker image
+name: Build CUDA Pascal + Vulkan Docker image
 
 on:
+  push:
+    branches:
+      - main
+      - master
   workflow_dispatch:
     inputs:
       cuda_version:
@@ -17,8 +21,10 @@ permissions:
 
 jobs:
   build-and-push:
-    name: Build CUDA ${{ inputs.cuda_version }} for Pascal
+    name: Build CUDA Pascal + Vulkan image
     runs-on: ubuntu-24.04
+    env:
+      CUDA_VERSION: ${{ inputs.cuda_version || '12.9.1' }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -50,7 +56,7 @@ jobs:
 
       - name: Set image tag
         id: image
-        run: echo "tag=ghcr.io/rarogcmex/llama-cpp-turboquant:cuda${{ inputs.cuda_version }}-pascal" >> $GITHUB_OUTPUT
+        run: echo "tag=ghcr.io/rarogcmex/llama-cpp-turboquant:cuda${{ env.CUDA_VERSION }}-pascal-vulkan" >> $GITHUB_OUTPUT
 
       - name: Build and push
         uses: docker/build-push-action@v6
@@ -62,7 +68,7 @@ jobs:
           target: full
           provenance: false
           build-args: |
-            CUDA_VERSION=${{ inputs.cuda_version }}
+            CUDA_VERSION=${{ env.CUDA_VERSION }}
             CUDA_DOCKER_ARCH=60;61
             BUILD_DATE=${{ steps.build_date.outputs.date }}
           tags: |
