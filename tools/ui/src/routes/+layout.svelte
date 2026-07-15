@@ -326,48 +326,10 @@
 		onCancel={handleTitleUpdateCancel}
 	/>
 
-<DialogMcpServerRecommendations
+	<DialogMcpServerRecommendations
 		open={mcpRecommendations.open}
 		onOpenChange={mcpRecommendations.handleOpenChange}
 	/>
-
-	<Sidebar.Provider bind:open={sidebarOpen}>
-		<div class="flex h-full w-full grow">
-			<Sidebar.Root variant="floating" class="h-full"
-				><SidebarNavigation bind:this={chatSidebar} /></Sidebar.Root
-			>
-
-			{#if !(alwaysShowSidebarOnDesktop && isDesktop) && !(panelNav.isSettingsRoute && !isDesktop)}
-				{#if mounted}
-					<div in:fade={{ duration: 200 }}>
-						<Sidebar.Trigger
-							class="transition-left absolute left-0 z-[900] duration-200 ease-linear {sidebarOpen
-								? 'left-[calc(var(--sidebar-width)+0.75rem)] max-md:hidden'
-								: 'left-0!'}"
-							style="translate: 1rem 1rem;"
-						/>
-					</div>
-				{/if}
-			{/if}
-
-			{#if isDesktop && !alwaysShowSidebarOnDesktop}
-				<DesktopIconStrip
-					{sidebarOpen}
-					onSearchClick={() => {
-						if (chatSidebar?.activateSearchMode) {
-							chatSidebar.activateSearchMode();
-						}
-
-						sidebarOpen = true;
-					}}
-				/>
-			{/if}
-
-			<Sidebar.Inset class="flex flex-1 flex-col overflow-hidden max-h-dvh">
-				{@render children?.()}
-			</Sidebar.Inset>
-		</div>
-	</Sidebar.Provider>
 </Tooltip.Provider>
 
 <!-- PWA update prompt + version -->
