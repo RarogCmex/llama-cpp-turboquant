@@ -1,4 +1,6 @@
-# llama.cpp + TurboQuant+
+# llama.cpp with TurboQuant+
+
+![llama](banner.png)
 
 > Production-grade KV-cache and weight quantization for llama.cpp, with cross-backend kernel support for Apple Silicon, NVIDIA CUDA, AMD ROCm, and Vulkan.
 
@@ -28,10 +30,8 @@ This fork's TurboQuant integration is used in:
 | | |
 |---|---|
 | Default branch | `feature/turboquant-kv-cache` |
-| Commits ahead of upstream | ~300 |
 | Upstream tracking | continuous sync from `ggml-org/llama.cpp` master |
-| Upstream PR status | not yet upstreamed; running as a long-lived feature branch |
-
+| Release | [`fb30ba9a6c5b4674174d06aed14794832ab33278 b9946`](https://github.com/ggml-org/llama.cpp/releases/tag/b9946) |
 ---
 
 ## What this fork adds
@@ -240,7 +240,7 @@ MIT, same as upstream llama.cpp.
 
 Getting started with llama.cpp is straightforward. Here are several ways to install it on your machine:
 
-- Install `llama.cpp` using [brew, nix or winget](docs/install.md)
+- Install `llama.cpp` using [brew, nix, winget, or conda-forge](docs/install.md)
 - Run with Docker - see our [Docker documentation](docs/docker.md)
 - Download pre-built binaries from the [releases page](https://github.com/ggml-org/llama.cpp/releases)
 - Build from source by cloning this repository - check out [our build guide](docs/build.md)
@@ -345,7 +345,9 @@ Instructions for adding support for new models: [HOWTO-add-model.md](docs/develo
 - [x] [GigaChat-20B-A3B](https://huggingface.co/ai-sage/GigaChat-20B-A3B-instruct)
 - [X] [Trillion-7B-preview](https://huggingface.co/trillionlabs/Trillion-7B-preview)
 - [x] [Ling models](https://huggingface.co/collections/inclusionAI/ling-67c51c85b34a7ea0aba94c32)
-- [x] [LFM2 models](https://huggingface.co/collections/LiquidAI/lfm2-686d721927015b2ad73eaa38)
+- [x] [Liquid LFM2 models](https://huggingface.co/collections/LiquidAI/lfm2)
+- [x] [Liquid LFM2.5 models](https://huggingface.co/collections/LiquidAI/lfm25)
+- [x] [Liquid Nanos](https://huggingface.co/collections/LiquidAI/liquid-nanos)
 - [x] [Hunyuan models](https://huggingface.co/collections/tencent/hunyuan-dense-model-6890632cda26b19119c9c5e7)
 - [x] [BailingMoeV2 (Ring/Ling 2.0) models](https://huggingface.co/collections/inclusionAI/ling-v2-68bf1dd2fc34c306c1fa6f86)
 - [x] [Mellum models](https://huggingface.co/JetBrains/models?search=mellum)
